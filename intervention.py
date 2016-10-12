@@ -37,11 +37,13 @@ record = None
 
 def StartRecord():
 	global record
-	record = subprocess.Popen([], shell=True)
+	record = subprocess.Popen(["arecord sound.wav"], shell=True)
 
 def StopRecord():
-
+	record.terminate()
+	subprocess.Popen(["pkill aplay"], shell=True)
 def PlayRecord():
+	subprocess.Popen(["aplay sound.wave"], shell=True)
 
 
 while True:

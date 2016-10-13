@@ -101,11 +101,6 @@ while True:
 		PlayIntro()
 		userChoice = None
 
-		print(buttonA)
-		print(buttonB)
-		print(buttonC)
-		print(buttonD)
-
 		if(buttonA == GPIO.HIGH):
 			PlayQuestion(questionA)
 			userChoice = "A"

@@ -34,7 +34,7 @@ questionC = 'question_c.wav'
 questionD = 'question_d.wav'
 
 record = None
-userChoice = None
+
 
 def StartRecord():
 	global record
@@ -61,20 +61,20 @@ while True:
 	while(phoneButton == True):
 		StartRecord()
 		PlayIntro()
-		global userChoice
+		userChoice = None
 
 		if(buttonA == GPIO.HIGH):
 			PlayQuestion(questionA)
-			userChoice = A
+			userChoice = "A"
 		elif(buttonB == GPIO.HIGH):
 		 	PlayQuestion(questionB)
-		 	userChoice = B
+		 	userChoice = "B"
 		elif(buttonC == GPIO.HIGH):
 		 	PlayQuestion(questionC)
-		 	userChoice = C
+		 	userChoice = "C"
 		elif(buttonD == GPIO.HIGH):
 		 	PlayQuestion(questionD)
-		 	userChoice = D
+		 	userChoice = "D"
 
 		StopRecord()
 		ChangeFileName(userChoice)

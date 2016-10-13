@@ -79,7 +79,7 @@ while True:
 	if(buttonA == False):
 		GPIO.output(12, 1)
 	elif(buttonA == True):
-		GPIO.output(12, 1)
+		GPIO.output(12, 0)
 
 	time.sleep(0.1)
 

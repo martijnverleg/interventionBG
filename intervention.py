@@ -48,10 +48,10 @@ def StopRecord():
 	time.sleep(1)
 
 def PlayIntro():
-	subprocess.Popen(["aplay -D intro.wav"], shell=True)
+	subprocess.Popen(["aplay intro.wav"], shell=True)
 
 def PlayQuestion(question):
-	command = "aplay -D %s" % question
+	command = "aplay %s" % question
 	subprocess.Popen([command], shell=True) 
 
 def ChangeFileName(choice):

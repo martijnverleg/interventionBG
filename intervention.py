@@ -7,7 +7,7 @@ import subprocess
 deviceName = "testDevice"
 
 # setup GPIO
-# GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.IN)
 GPIO.setup(16, GPIO.IN)
 GPIO.setup(18, GPIO.IN)

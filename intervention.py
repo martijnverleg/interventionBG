@@ -60,6 +60,16 @@ def ChangeFileName(choice):
 	command = "mv record.wav %s" % fileName
 	subprocess.Popen([command], shell=True)
 
+def Blink(amount, pin, delay):
+	for x in range (0, amount):
+		GPIO.output(pin, 1)
+		time.sleep(delay)
+		GPIO.output(pin, 0)
+		time.sleep(delay)
+
+Blink(3, 26, 0.5)
+
+"""
 while True:
 	while(phoneButton == True):
 		StartRecord()

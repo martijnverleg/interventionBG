@@ -114,7 +114,7 @@ while True:
 		 	PlayQuestion(questionB)
 		 	userChoice = "B"
 		 	blink(3, 23, 0.5)
-		 """
+		"""
 		elif(buttonC == GPIO.HIGH):
 		 	PlayQuestion(questionC)
 		 	userChoice = "C"

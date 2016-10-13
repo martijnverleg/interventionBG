@@ -7,8 +7,6 @@ import subprocess
 deviceName = "testDevice"
 
 # setup GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 """
 GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -82,6 +80,8 @@ while True:
 	time.sleep(0.1)
 """
 while True:
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setwarnings(False)
 	#phoneButton = GPIO.input(27)
 	phoneButton = True
 	

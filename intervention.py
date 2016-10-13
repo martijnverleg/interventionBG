@@ -82,6 +82,8 @@ while True:
 	elif(buttonB == GPIO.HIGH):
 		Blink(3, 12, 0.5)
 
+	GPIO.cleanup()
+
 
 """
 while True:

@@ -8,22 +8,13 @@ deviceName = "testDevice"
 
 # setup GPIO
 GPIO.setmode(GPIO.BCM)
-GPIO.cleanup
-"""
 GPIO.setwarnings(False)
-GPIO.setup(12, GPIO.IN)
-GPIO.setup(16, GPIO.IN)
-GPIO.setup(18, GPIO.IN)
-GPIO.setup(21, GPIO.IN)
-GPIO.setup(27, GPIO.IN)
-
-buttonA = GPIO.input(12)
-buttonB = GPIO.input(16)
-buttonC = GPIO.input(18)
-buttonD = GPIO.input(21)
-#phoneButton = GPIO.input(27)
-stopButton = GPIO.input(27)
-phoneButton = True
+"""
+GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 GPIO.setup(6, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
@@ -37,7 +28,6 @@ questionC = 'question_c.wav'
 questionD = 'question_d.wav'
 
 record = None
-
 
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -74,7 +64,7 @@ def Blink(amount, pin, delay):
 		time.sleep(delay)
 		GPIO.output(pin, 0)
 		time.sleep(delay)
-
+"""
 while True:
 	buttonA = GPIO.input(23)
 	buttonB = GPIO.input(16)
@@ -90,12 +80,23 @@ while True:
 		GPIO.output(12, 0)
 
 	time.sleep(0.1)
-
-
-
 """
 while True:
+	#phoneButton = GPIO.input(27)
+	phoneButton = True
+	
 	while(phoneButton == True):
+		buttonA = GPIO.input(23)
+		buttonB = GPIO.input(16)
+
+		"""
+		buttonA = GPIO.input(12)
+		buttonB = GPIO.input(16)
+		buttonC = GPIO.input(18)
+		buttonD = GPIO.input(21)
+		stopButton = GPIO.input(27)
+		"""
+
 		StartRecord()
 		PlayIntro()
 		userChoice = None
@@ -108,18 +109,21 @@ while True:
 		if(buttonA == GPIO.HIGH):
 			PlayQuestion(questionA)
 			userChoice = "A"
+			blink(3, 23, 0.5)
 		elif(buttonB == GPIO.HIGH):
 		 	PlayQuestion(questionB)
 		 	userChoice = "B"
+		 	blink(3, 23, 0.5)
+		 """
 		elif(buttonC == GPIO.HIGH):
 		 	PlayQuestion(questionC)
 		 	userChoice = "C"
 		elif(buttonD == GPIO.HIGH):
 		 	PlayQuestion(questionD)
 		 	userChoice = "D"
+		"""
 
 		StopRecord()
 		ChangeFileName(userChoice)
 	
 		GPIO.cleanup()
-"""

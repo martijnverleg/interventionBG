@@ -38,9 +38,9 @@ questionD = 'question_d.wav'
 record = None
 
 GPIO.setup(18, GPIO.OUT)
-GPIO.setup(23, GPIO.IN)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(12, GPIO.OUT)
-GPIO.setup(16, GPIO.IN)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 buttonA = GPIO.input(23)
 buttonB = GPIO.input(16)
@@ -77,7 +77,7 @@ def Blink(amount, pin, delay):
 		time.sleep(delay)
 
 while True:
-	if(buttonA == GPIO.HIGH):
+	if(buttonA == False):
 		Blink(3, 12, 0.5)
 
 

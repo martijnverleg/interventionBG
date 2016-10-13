@@ -84,7 +84,7 @@ while True:
 	elif(buttonA == True):
 		GPIO.output(18, 0)
 	elif(buttonB == False):
-		GPIO.output(12, 1):
+		GPIO.output(12, 1)
 	elif(buttonB == True):
 		GPIO.output(12, 0)
 

@@ -55,7 +55,7 @@ def ChangeFileName(choice):
 	currentTime = datetime.datetime.now().strftime ("%m%d_%H%M%S")
 	fileName = "%s_%s_%s.wav" % (deviceName, choice, currentTime)
 	command = "mv record.wav %s" % fileName
-	subprocess.Popen([command], shell=True) % fileName
+	subprocess.Popen([command], shell=True)
 
 while True:
 	while(phoneButton == True):

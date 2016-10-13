@@ -14,12 +14,12 @@ GPIO.setup(18, GPIO.IN)
 GPIO.setup(21, GPIO.IN)
 GPIO.setup(27, GPIO.IN)
 
-buttonA = GPIO.input(23)
-buttonB = GPIO.input(24)
-buttonC = GPIO.input(25)
-buttonD = GPIO.input(26)
+buttonA = GPIO.input(12)
+buttonB = GPIO.input(16)
+buttonC = GPIO.input(18)
+buttonD = GPIO.input(21)
 #phoneButton = GPIO.input(27)
-#stopButton = GPIO.input(27)
+stopButton = GPIO.input(27)
 phoneButton = True
 
 GPIO.setup(6, GPIO.OUT)

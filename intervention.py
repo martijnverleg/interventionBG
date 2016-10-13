@@ -40,7 +40,9 @@ record = None
 
 
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(12, GPIO.OUT)
+GPIO.setup(18, GPIO.OUT)
 
 def StartRecord():
 	global record
@@ -75,10 +77,15 @@ def Blink(amount, pin, delay):
 
 while True:
 	buttonA = GPIO.input(23)
+	buttonB = GPIO.input(16)
 	
 	if(buttonA == False):
-		GPIO.output(12, 1)
+		GPIO.output(18, 1)
 	elif(buttonA == True):
+		GPIO.output(18, 0)
+	elif(buttonB == False):
+		GPIO.output(12, 1):
+	elif(buttonB == True):
 		GPIO.output(12, 0)
 
 	time.sleep(0.1)

@@ -77,13 +77,8 @@ def Blink(amount, pin, delay):
 		time.sleep(delay)
 
 while True:
-	GPIO.setmode(GPIO.BCM)
 	if(buttonA == GPIO.HIGH):
-		Blink(3, 18, 0.5)
-	elif(buttonB == GPIO.HIGH):
 		Blink(3, 12, 0.5)
-
-	GPIO.cleanup()
 
 
 """

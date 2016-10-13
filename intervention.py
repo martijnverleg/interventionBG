@@ -38,9 +38,9 @@ questionD = 'question_d.wav'
 record = None
 
 GPIO.setup(18, GPIO.OUT)
-GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(12, GPIO.OUT)
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 buttonA = GPIO.input(23)
 buttonB = GPIO.input(16)

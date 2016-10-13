@@ -42,17 +42,21 @@ def StartRecord():
 def StopRecord():
 	record.terminate()
 	subprocess.Popen(["pkill aplay"], shell=True)
-def PlayRecord():
+
+def PlayIntro():
 	subprocess.Popen(["aplay sound.wave"], shell=True)
+
+def PlayQuestion(choice):
+	subprocess.Popen(["aplay %s.wave"], shell=True) % choice.
 
 
 while True:
 	while(phoneButton == True):
 		if(buttonA == GPIO.HIGH):
-			
+			PlayQuestion(questionA)
 		elif(buttonB == GPIO.HIGH):
-		 	
+		 	PlayQuestion(questionB)
 		elif(buttonC == GPIO.HIGH):
-		 	
+		 	PlayQuestion(questionC)
 		elif(buttonD == GPIO.HIGH):
-		 	
+		 	PlayQuestion(questionD)

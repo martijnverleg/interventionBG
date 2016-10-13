@@ -43,8 +43,6 @@ GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(12, GPIO.OUT)
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-
-
 def StartRecord():
 	global record
 	record = subprocess.Popen(["arecord -D plughw:1,0 record.wav"], shell=True)
@@ -80,7 +78,7 @@ while True:
 	buttonA = GPIO.input(23)
 	buttonB = GPIO.input(16)
 	
-	if(buttonA == True):
+	if(buttonA == False):
 		Blink(3, 12, 0.5)
 
 

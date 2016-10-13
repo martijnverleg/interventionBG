@@ -8,6 +8,7 @@ deviceName = "testDevice"
 
 # setup GPIO
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 GPIO.setup(12, GPIO.IN)
 GPIO.setup(16, GPIO.IN)
 GPIO.setup(18, GPIO.IN)
@@ -80,3 +81,5 @@ while True:
 
 		StopRecord()
 		ChangeFileName(userChoice)
+	
+		GPIO.cleanup()

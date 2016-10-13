@@ -43,7 +43,7 @@ def StartRecord():
 def StopRecord():
 	record.terminate()
 	time.sleep(1)
-	subprocess.Popen(["pkill aplay"], shell=True)
+	subprocess.Popen(["pkill arecord"], shell=True)
 	time.sleep(1)
 
 def PlayIntro():

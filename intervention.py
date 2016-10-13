@@ -1,10 +1,10 @@
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from time import sleep
 import datetime
 import subprocess
 
 # !IMPORTANT! assign unique name to device
-deviceName = testDevice
+deviceName = "testDevice"
 
 # setup GPIO
 # GPIO.setmode(GPIO.BCM)
@@ -47,10 +47,13 @@ def StopRecord():
 def PlayIntro():
 	subprocess.Popen(["aplay sound.wave"], shell=True)
 
-def PlayQuestion(choice):
-	subprocess.Popen(["aplay %s.wave"], shell=True) % choice
+def PlayQuestion(question):
+	subprocess.Popen(["aplay %s.wave"], shell=True) % question
 
-def ChangeFileName:
+def ChangeFileName(choice):
+	currentTime = datetime.datetime.now().strftime ("%m%d_%H%M%S")
+	fileName = %s_%s_%s.wav % (deviceName, choice, currentTime)
+	subprocess.Popen(["mv record.wav %s"], shell=True) % fileName
 
 while True:
 	while(phoneButton == True):
@@ -71,3 +74,4 @@ while True:
 		 	userChoice = D
 
 		StopRecord()
+		ChangeFileName(userChoice)

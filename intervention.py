@@ -8,6 +8,7 @@ deviceName = "testDevice"
 
 # setup GPIO
 GPIO.setmode(GPIO.BCM)
+GPIO.cleanup
 """
 GPIO.setwarnings(False)
 GPIO.setup(12, GPIO.IN)

@@ -67,7 +67,11 @@ def Blink(amount, pin, delay):
 		GPIO.output(pin, 0)
 		time.sleep(delay)
 
-Blink(3, 26, 0.5)
+
+if(buttonD == GPIO.HIGH):
+	Blink(3, 26, 0.5)
+
+
 
 """
 while True:

@@ -77,9 +77,11 @@ while True:
 	buttonA = GPIO.input(23)
 	
 	if(buttonA == True):
-		Blink(2, 12, 0.25)
+		GPIO.output(12, 0)
 	elif(buttonA == False):
-		Blink(1, 12, 02)
+		GPIO.output(12, 1)
+
+	time.sleep(0.1)
 
 
 

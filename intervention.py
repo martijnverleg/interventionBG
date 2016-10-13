@@ -79,7 +79,7 @@ while True:
 	if(buttonA == True):
 		Blink(2, 12, 0.25)
 	elif(buttonA == False):
-		Blink(1, 12, 0.5)
+		Blink(1, 12, 02)
 
 
 

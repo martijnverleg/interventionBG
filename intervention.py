@@ -38,10 +38,9 @@ questionD = 'question_d.wav'
 
 record = None
 
-GPIO.setup(18, GPIO.OUT)
+
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(12, GPIO.OUT)
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def StartRecord():
 	global record
@@ -76,10 +75,12 @@ def Blink(amount, pin, delay):
 
 while True:
 	buttonA = GPIO.input(23)
-	buttonB = GPIO.input(16)
 	
-	if(buttonA == False):
-		Blink(3, 12, 0.5)
+	if(buttonA == True):
+		Blink(2, 12, 0.25)
+	elif(buttonA == False):
+		Blink(1, 12, 0.5)
+
 
 
 """

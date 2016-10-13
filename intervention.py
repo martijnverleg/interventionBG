@@ -77,7 +77,7 @@ def Blink(amount, pin, delay):
 		time.sleep(delay)
 
 while True:
-	if(buttonA == False):
+	if(buttonA == True):
 		Blink(3, 12, 0.5)
 
 

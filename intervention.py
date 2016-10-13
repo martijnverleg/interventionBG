@@ -53,7 +53,8 @@ def PlayQuestion(question):
 def ChangeFileName(choice):
 	currentTime = datetime.datetime.now().strftime ("%m%d_%H%M%S")
 	fileName = "%s_%s_%s.wav" % (deviceName, choice, currentTime)
-	subprocess.Popen(["mv record.wav %s"], shell=True) % fileName
+	command = "mv record.wav %s" % fileName
+	subprocess.Popen([command], shell=True) % fileName
 
 while True:
 	while(phoneButton == True):

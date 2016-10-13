@@ -34,6 +34,7 @@ questionC = 'question_c.mp3'
 questionD = 'question_d.mp3'
 
 record = None
+userChoice = None
 
 def StartRecord():
 	global record
@@ -47,16 +48,26 @@ def PlayIntro():
 	subprocess.Popen(["aplay sound.wave"], shell=True)
 
 def PlayQuestion(choice):
-	subprocess.Popen(["aplay %s.wave"], shell=True) % choice.
+	subprocess.Popen(["aplay %s.wave"], shell=True) % choice
 
+def ChangeFileName:
 
 while True:
 	while(phoneButton == True):
+		StartRecord()
+		PlayIntro()
+
 		if(buttonA == GPIO.HIGH):
 			PlayQuestion(questionA)
+			userChoice = A
 		elif(buttonB == GPIO.HIGH):
 		 	PlayQuestion(questionB)
+		 	userChoice = B
 		elif(buttonC == GPIO.HIGH):
 		 	PlayQuestion(questionC)
+		 	userChoice = C
 		elif(buttonD == GPIO.HIGH):
 		 	PlayQuestion(questionD)
+		 	userChoice = D
+
+		StopRecord()

@@ -28,27 +28,27 @@ GPIO.setup(19, GPIO.OUT)
 GPIO.setup(26, GPIO.OUT)
 
 # filenames
-questionA = 'question_a.mp3'
-questionB = 'question_b.mp3'
-questionC = 'question_c.mp3'
-questionD = 'question_d.mp3'
+questionA = 'question_a.wav'
+questionB = 'question_b.wav'
+questionC = 'question_c.wav'
+questionD = 'question_d.wav'
 
 record = None
 userChoice = None
 
 def StartRecord():
 	global record
-	record = subprocess.Popen(["arecord sound.wav"], shell=True)
+	record = subprocess.Popen(["arecord -D plughw:1,0 record.wav"], shell=True)
 
 def StopRecord():
 	record.terminate()
 	subprocess.Popen(["pkill aplay"], shell=True)
 
 def PlayIntro():
-	subprocess.Popen(["aplay sound.wave"], shell=True)
+	subprocess.Popen(["aplay -D plughw1:,0 intro.wav"], shell=True)
 
 def PlayQuestion(question):
-	subprocess.Popen(["aplay %s.wave"], shell=True) % question
+	subprocess.Popen(["aplay -D plughw1:,0 %s"], shell=True) % question
 
 def ChangeFileName(choice):
 	currentTime = datetime.datetime.now().strftime ("%m%d_%H%M%S")

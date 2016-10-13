@@ -48,7 +48,8 @@ def PlayIntro():
 	subprocess.Popen(["aplay -D plughw1:,0 intro.wav"], shell=True)
 
 def PlayQuestion(question):
-	subprocess.Popen(["aplay -D plughw1:,0 %s"], shell=True) % question
+	command = "aplay -D plughw1:,0 %s" % question
+	subprocess.Popen([command], shell=True) 
 
 def ChangeFileName(choice):
 	currentTime = datetime.datetime.now().strftime ("%m%d_%H%M%S")

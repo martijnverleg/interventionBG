@@ -8,6 +8,7 @@ deviceName = "testDevice"
 
 # setup GPIO
 GPIO.setmode(GPIO.BCM)
+"""
 GPIO.setwarnings(False)
 GPIO.setup(12, GPIO.IN)
 GPIO.setup(16, GPIO.IN)
@@ -27,7 +28,7 @@ GPIO.setup(6, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
 GPIO.setup(19, GPIO.OUT)
 GPIO.setup(26, GPIO.OUT)
-
+"""
 # filenames
 questionA = 'question_a.wav'
 questionB = 'question_b.wav'
@@ -35,6 +36,14 @@ questionC = 'question_c.wav'
 questionD = 'question_d.wav'
 
 record = None
+
+GPIO.setup(18, GPIO.OUT)
+GPIO.setup(23, GPIO.IN)
+GPIO.setup(12, GPIO.OUT)
+GPIO.setup(16, GPIO.IN)
+
+buttonA = GPIO.input(23)
+buttonB = GPIO.input(16)
 
 def StartRecord():
 	global record
@@ -68,9 +77,11 @@ def Blink(amount, pin, delay):
 		time.sleep(delay)
 
 
-if(buttonD == GPIO.HIGH):
-	Blink(3, 26, 0.5)
+if(buttonA == GPIO.HIGH):
+	Blink(3, 18, 0.5)
 
+if(buttonB == GPIO.HIGH):
+	Blink(3, 12, 0.5)
 
 
 """

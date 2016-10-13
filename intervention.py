@@ -35,15 +35,16 @@ questionD = 'question_d.wav'
 
 record = None
 
-
 def StartRecord():
 	global record
 	record = subprocess.Popen(["arecord -D plughw:1,0 record.wav"], shell=True)
+	time.sleep(2)
 
 def StopRecord():
 	record.terminate()
 	time.sleep(1)
 	subprocess.Popen(["pkill aplay"], shell=True)
+	time.sleep(1)
 
 def PlayIntro():
 	subprocess.Popen(["aplay -D plughw1:,0 intro.wav"], shell=True)

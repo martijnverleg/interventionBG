@@ -101,11 +101,11 @@ while True:
 		PlayIntro()
 		userChoice = None
 
-		if(buttonA == GPIO.HIGH):
+		if(buttonA == False):
 			PlayQuestion(questionA)
 			userChoice = "A"
 			blink(3, 23, 0.5)
-		elif(buttonB == GPIO.HIGH):
+		elif(buttonB == False):
 		 	PlayQuestion(questionB)
 		 	userChoice = "B"
 		 	blink(3, 23, 0.5)

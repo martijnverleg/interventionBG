@@ -61,6 +61,7 @@ while True:
 	while(phoneButton == True):
 		StartRecord()
 		PlayIntro()
+		global userChoice
 
 		if(buttonA == GPIO.HIGH):
 			PlayQuestion(questionA)

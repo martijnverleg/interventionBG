@@ -105,8 +105,6 @@ while True:
 			buttonD = GPIO.input(21)
 			stopButton = GPIO.input(27)
 			"""
-			print("waiting for input...")
-			print(runTime)
 			if(buttonA == False):
 				PlayQuestion(questionA)
 				userChoice = "A"
@@ -131,6 +129,7 @@ while True:
 			"""
 		while runTime < 10: 
 			runTime = time.time() - startTime
+			print(runTime)
 			if(buttonB == False):
 				StopRecord()
 			elif(runTime > 10):

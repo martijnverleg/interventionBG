@@ -84,7 +84,6 @@ while True:
 while True:
 	#phoneButton = GPIO.input(27)
 	phoneButton = True
-	
 
 	while(phoneButton == True):
 		StartRecord()
@@ -137,7 +136,8 @@ while True:
 			elif(runTime > 10):
 				StopRecord()
 				isRecording == False
+			print("still looping")
 
 		ChangeFileName(userChoice)
-	
+
 		#GPIO.cleanup()

@@ -103,6 +103,7 @@ while True:
 		waitForInput = True
 
 		while waitForInput == True:
+			print("waiting for input...")
 			if(buttonA == False):
 				PlayQuestion(questionA)
 				userChoice = "A"

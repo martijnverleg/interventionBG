@@ -91,7 +91,7 @@ while True:
 		PlayIntro()
 		userChoice = None
 		waitForInput = True
-		runTime = time.clock()
+		startTime = time.time()
 
 		while waitForInput == True:
 			buttonA = GPIO.input(23)
@@ -128,13 +128,13 @@ while True:
 			 	Blink(3, 12, 0.5)
 			 	waitForInput = False
 			"""
-			
-		if(buttonB == False):
-			StopRecord()
-		elif(runTime > 1000):
-			StopRecord()
+		while runTime < 10: 
+			runTime = time.time() - start_time
+			if(buttonB == False):
+				StopRecord()
+			elif(runTime > 10):
+				StopRecord()
 
-		
 		ChangeFileName(userChoice)
 	
 		#GPIO.cleanup()

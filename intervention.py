@@ -103,7 +103,6 @@ while True:
 			buttonB = GPIO.input(16)
 			buttonC = GPIO.input(18)
 			buttonD = GPIO.input(21)
-			stopButton = GPIO.input(27)
 			"""
 			if(buttonA == False):
 				PlayQuestion(questionA)
@@ -129,6 +128,7 @@ while True:
 			"""
 		while isRecording == True: 
 			runTime = time.time() - startTime
+			stopButton = GPIO.input(16)
 			print(runTime)
 			if(buttonB == False):
 				StopRecord()

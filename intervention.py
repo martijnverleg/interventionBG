@@ -92,6 +92,7 @@ while True:
 		userChoice = None
 		waitForInput = True
 		startTime = time.time()
+		runTime = 0
 
 		while waitForInput == True:
 			buttonA = GPIO.input(23)

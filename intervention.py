@@ -86,23 +86,22 @@ while True:
 	phoneButton = True
 	
 	while(phoneButton == True):
-		buttonA = GPIO.input(23)
-		buttonB = GPIO.input(16)
-
-		"""
-		buttonA = GPIO.input(12)
-		buttonB = GPIO.input(16)
-		buttonC = GPIO.input(18)
-		buttonD = GPIO.input(21)
-		stopButton = GPIO.input(27)
-		"""
-
 		StartRecord()
 		PlayIntro()
 		userChoice = None
 		waitForInput = True
 
 		while waitForInput == True:
+			buttonA = GPIO.input(23)
+			buttonB = GPIO.input(16)
+
+			"""
+			buttonA = GPIO.input(12)
+			buttonB = GPIO.input(16)
+			buttonC = GPIO.input(18)
+			buttonD = GPIO.input(21)
+			stopButton = GPIO.input(27)
+			"""
 			print("waiting for input...")
 			if(buttonA == False):
 				PlayQuestion(questionA)

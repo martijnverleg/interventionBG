@@ -130,7 +130,7 @@ while True:
 			 	waitForInput = False
 			"""
 		while runTime < 10: 
-			runTime = time.time() - start_time
+			runTime = time.time() - startTime
 			if(buttonB == False):
 				StopRecord()
 			elif(runTime > 10):

@@ -100,25 +100,33 @@ while True:
 		StartRecord()
 		PlayIntro()
 		userChoice = None
+		waitForInput = True
 
-		if(buttonA == False):
-			PlayQuestion(questionA)
-			userChoice = "A"
-			blink(3, 18, 0.5)
-		elif(buttonB == False):
-		 	PlayQuestion(questionB)
-		 	userChoice = "B"
-		 	blink(3, 12, 0.5)
-		"""
-		elif(buttonC == GPIO.HIGH):
-		 	PlayQuestion(questionC)
-		 	userChoice = "C"
-		elif(buttonD == GPIO.HIGH):
-		 	PlayQuestion(questionD)
-		 	userChoice = "D"
-		"""
+		while waitForInput == True:
+			if(buttonA == False):
+				PlayQuestion(questionA)
+				userChoice = "A"
+				Blink(3, 18, 0.5)
+				waitForInput = False
+			elif(buttonB == False):
+			 	PlayQuestion(questionB)
+			 	userChoice = "B"
+			 	Blink(3, 12, 0.5)
+			 	waitForInput = False
+			"""
+			elif(buttonC == GPIO.HIGH):
+			 	PlayQuestion(questionC)
+			 	userChoice = "C"
+			 	Blink(3, 12, 0.5)
+			 	waitForInput = False
+			elif(buttonD == GPIO.HIGH):
+			 	PlayQuestion(questionD)
+			 	userChoice = "D"
+			 	Blink(3, 12, 0.5)
+			 	waitForInput = False
+			"""
 
 		StopRecord()
 		ChangeFileName(userChoice)
 	
-		GPIO.cleanup()
+		#GPIO.cleanup()

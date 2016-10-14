@@ -91,6 +91,7 @@ while True:
 		PlayIntro()
 		userChoice = None
 		waitForInput = True
+		isRecording = True
 		startTime = time.time()
 		runTime = 0
 
@@ -127,13 +128,15 @@ while True:
 			 	Blink(3, 12, 0.5)
 			 	waitForInput = False
 			"""
-		while runTime < 10: 
+		while isRecording == True: 
 			runTime = time.time() - startTime
 			print(runTime)
 			if(buttonB == False):
 				StopRecord()
+				isRecording == False
 			elif(runTime > 10):
 				StopRecord()
+				isRecording == False
 
 		ChangeFileName(userChoice)
 	

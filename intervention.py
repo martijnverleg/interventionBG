@@ -85,11 +85,13 @@ while True:
 	#phoneButton = GPIO.input(27)
 	phoneButton = True
 	
+
 	while(phoneButton == True):
 		StartRecord()
 		PlayIntro()
 		userChoice = None
 		waitForInput = True
+		runTime = time.clock()
 
 		while waitForInput == True:
 			buttonA = GPIO.input(23)
@@ -103,6 +105,7 @@ while True:
 			stopButton = GPIO.input(27)
 			"""
 			print("waiting for input...")
+			print(runTime)
 			if(buttonA == False):
 				PlayQuestion(questionA)
 				userChoice = "A"
@@ -125,8 +128,10 @@ while True:
 			 	Blink(3, 12, 0.5)
 			 	waitForInput = False
 			"""
-
-		StopRecord()
+		if(buttonB == False):
+			StopRecord()
+		elif()
+		
 		ChangeFileName(userChoice)
 	
 		#GPIO.cleanup()

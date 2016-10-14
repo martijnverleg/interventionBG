@@ -127,7 +127,7 @@ while True:
 			 	waitForInput = False
 			"""
 		while isRecording == True: 
-			runTime = time.time() - startTime
+			runTime = int(float(time.time() - startTime))
 			stopButton = GPIO.input(16)
 			print(runTime)
 			if(buttonB == False):

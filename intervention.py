@@ -133,11 +133,11 @@ while True:
 			print("still looping")
 			if(stopButton == False):
 				StopRecord()
-				isRecording == False
+				isRecording = False
 				print("button interrupt")
 			elif(runTime > 10):
 				StopRecord()
-				isRecording == False
+				isRecording = False
 				print("time interrupt")
 
 		ChangeFileName(userChoice)

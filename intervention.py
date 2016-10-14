@@ -128,9 +128,12 @@ while True:
 			 	Blink(3, 12, 0.5)
 			 	waitForInput = False
 			"""
+			
 		if(buttonB == False):
 			StopRecord()
-		elif()
+		elif(runTime > 1000):
+			StopRecord()
+
 		
 		ChangeFileName(userChoice)
 	

@@ -130,7 +130,8 @@ while True:
 			runTime = int(float(time.time() - startTime))
 			stopButton = GPIO.input(16)
 			print(runTime)
-			if(buttonB == False):
+			print("still looping")
+			if(stopButton == False):
 				StopRecord()
 				isRecording == False
 				print("button interrupt")
@@ -138,7 +139,6 @@ while True:
 				StopRecord()
 				isRecording == False
 				print("time interrupt")
-			print("still looping")
 
 		ChangeFileName(userChoice)
 

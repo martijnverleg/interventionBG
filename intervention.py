@@ -5,22 +5,36 @@ import subprocess
 
 # !IMPORTANT! assign unique name to device
 deviceName = "testDevice"
+# !IMPORTANT! max recording time in seconds
+maxRecordTime = 15
+
+inPinA = 12
+inPinB = 16
+inPinC = 20
+inPinD = 21
+outPinA = 6
+outPinB = 13
+outPinC = 19
+outPinD = 26
+phonePin = 18
+stopPin = 17
 
 # setup GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-"""
-GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-GPIO.setup(6, GPIO.OUT)
-GPIO.setup(13, GPIO.OUT)
-GPIO.setup(19, GPIO.OUT)
-GPIO.setup(26, GPIO.OUT)
-"""
+GPIO.setup(inPinA, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(inPinB, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(inPinC, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(inPinD, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(phonePin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(stopPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+GPIO.setup(outPinA, GPIO.OUT)
+GPIO.setup(outPinB, GPIO.OUT)
+GPIO.setup(outPinC, GPIO.OUT)
+GPIO.setup(outPinD, GPIO.OUT)
+
 # filenames
 questionA = 'question_a.wav'
 questionB = 'question_b.wav'
@@ -28,11 +42,6 @@ questionC = 'question_c.wav'
 questionD = 'question_d.wav'
 
 record = None
-
-GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(12, GPIO.OUT)
-GPIO.setup(18, GPIO.OUT)
 
 def StartRecord():
 	global record
@@ -64,26 +73,9 @@ def Blink(amount, pin, delay):
 		time.sleep(delay)
 		GPIO.output(pin, 0)
 		time.sleep(delay)
-"""
-while True:
-	buttonA = GPIO.input(23)
-	buttonB = GPIO.input(16)
-	
-	if(buttonA == False):
-		GPIO.output(18, 1)
-	elif(buttonA == True):
-		GPIO.output(18, 0)
 
-	if(buttonB == False):
-		GPIO.output(12, 1)
-	elif(buttonB == True):
-		GPIO.output(12, 0)
-
-	time.sleep(0.1)
-"""
 while True:
-	#phoneButton = GPIO.input(27)
-	phoneButton = True
+	phoneButton = GPIO.input(phonePin)
 
 	while(phoneButton == True):
 		StartRecord()
@@ -95,50 +87,44 @@ while True:
 		runTime = 0
 
 		while waitForInput == True:
-			buttonA = GPIO.input(23)
-			buttonB = GPIO.input(16)
+			buttonA = GPIO.input(inPinA)
+			buttonB = GPIO.input(inPinB)
+			buttonC = GPIO.input(inPinC)
+			buttonD = GPIO.input(inPinD)
 
-			"""
-			buttonA = GPIO.input(12)
-			buttonB = GPIO.input(16)
-			buttonC = GPIO.input(18)
-			buttonD = GPIO.input(21)
-			"""
 			if(buttonA == False):
 				PlayQuestion(questionA)
 				userChoice = "A"
-				Blink(3, 18, 0.5)
+				Blink(3, outPinA, 0.5)
 				waitForInput = False
+
 			elif(buttonB == False):
 			 	PlayQuestion(questionB)
 			 	userChoice = "B"
-			 	Blink(3, 12, 0.5)
+			 	Blink(3, outPinB, 0.5)
 			 	waitForInput = False
-			"""
+
 			elif(buttonC == GPIO.HIGH):
 			 	PlayQuestion(questionC)
 			 	userChoice = "C"
-			 	Blink(3, 12, 0.5)
+			 	Blink(3, outPinC, 0.5)
 			 	waitForInput = False
+
 			elif(buttonD == GPIO.HIGH):
 			 	PlayQuestion(questionD)
 			 	userChoice = "D"
-			 	Blink(3, 12, 0.5)
+			 	Blink(3, outPinD, 0.5)
 			 	waitForInput = False
-			"""
+
 		while isRecording == True: 
 			runTime = int(float(time.time() - startTime))
-			stopButton = GPIO.input(16)
-			print(runTime)
-			print("still looping")
+			stopButton = GPIO.input(stopPin)
 			if(stopButton == False):
 				StopRecord()
 				isRecording = False
-				print("button interrupt")
-			elif(runTime > 10):
+			elif(runTime > maxRecordTime):
 				StopRecord()
 				isRecording = False
-				print("time interrupt")
 
 		ChangeFileName(userChoice)
 

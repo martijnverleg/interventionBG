@@ -4,7 +4,7 @@ import datetime
 import subprocess
 
 # !IMPORTANT! assign unique name to device
-deviceName = "veiligheid"
+deviceName = "vrijheid"
 
 # !IMPORTANT! max recording time in seconds
 maxRecordTime = 300

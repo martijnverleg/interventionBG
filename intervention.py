@@ -60,44 +60,44 @@ def PlayIntro(folder):
 	subprocess.Popen([command], shell=True)
 
 	if(folder == "jezelf"): 
-		time.sleep(60)
-		Blink(3, outPinA, 0.333)
+		time.sleep(59.5)
+		Blink(3, outPinA, 1.5)
 		GPIO.output(outPinA, 1)
-		Blink(3, outPinB, 0.333)
+		Blink(3, outPinB, 2)
 		GPIO.output(outPinB, 1)
-		Blink(3, outPinC, 0.333)
+		Blink(3, outPinC, 2)
 		GPIO.output(outPinC, 1)
-		Blink(3, outPinD, 0.333)
+		Blink(3, outPinD, 2.3)
 		GPIO.output(outPinD, 1)
 	elif(folder == "samenleving"):
 		time.sleep(82)
-		Blink(3, outPinA, 0.333)
+		Blink(3, outPinA, 2)
 		GPIO.output(outPinA, 1)
-		Blink(3, outPinB, 0.333)
+		Blink(3, outPinB, 2.1)
 		GPIO.output(outPinB, 1)
-		Blink(3, outPinC, 0.333)
+		Blink(3, outPinC, 2.15)
 		GPIO.output(outPinC, 1)
-		Blink(3, outPinD, 0.333)
+		Blink(3, outPinD, 2.2)
 		GPIO.output(outPinD, 1)
 	elif(folder == "vrijheid"):
 		time.sleep(80)
-		Blink(3, outPinA, 0.333)
+		Blink(3, outPinA, 2.5)
 		GPIO.output(outPinA, 1)
-		Blink(3, outPinB, 0.333)
+		Blink(3, outPinB, 2)
 		GPIO.output(outPinB, 1)
-		Blink(3, outPinC, 0.333)
+		Blink(3, outPinC, 3)
 		GPIO.output(outPinC, 1)
-		Blink(3, outPinD, 0.333)
+		Blink(3, outPinD, 2.75)
 		GPIO.output(outPinD, 1)
 	elif(folder == "zekerheid"):
 		time.sleep(62)
-		Blink(3, outPinA, 0.333)
+		Blink(3, outPinA, 1.5)
 		GPIO.output(outPinA, 1)
-		Blink(3, outPinB, 0.333)
+		Blink(3, outPinB, 2)
 		GPIO.output(outPinB, 1)
-		Blink(3, outPinC, 0.333)
+		Blink(3, outPinC, 1.5)
 		GPIO.output(outPinC, 1)
-		Blink(3, outPinD, 0.333)
+		Blink(3, outPinD, 1.9)
 		GPIO.output(outPinD, 1)
 
 def PlayQuestion(folder, question):
@@ -107,6 +107,8 @@ def PlayQuestion(folder, question):
 	subprocess.Popen([command], shell=True)
 
 def PlayOutro(folder):
+	subprocess.Popen(["pkill aplay"], shell=True)
+	time.sleep(0.1)
 	command = "aplay %s/outro.wav" % folder
 	subprocess.Popen([command], shell=True)
 
@@ -116,12 +118,12 @@ def ChangeFileName(choice):
 	command = "mv record.wav %s" % fileName
 	subprocess.Popen([command], shell=True)
 
-def Blink(amount, pin, delay):
+def Blink(amount, pin, time):
 	for x in range (0, amount):
 		GPIO.output(pin, 1)
-		time.sleep(delay)
+		time.sleep(time/amount/2)
 		GPIO.output(pin, 0)
-		time.sleep(delay)
+		time.sleep(time/amount/2)
 
 while True:
 	phoneButton = GPIO.input(phonePin)
@@ -150,28 +152,28 @@ while True:
 			if(buttonA == False):
 				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
-				Blink(3, outPinA, 0.5)
+				Blink(3, outPinA, 3)
 				GPIO.output(outPinA, 1)
 				waitForInput = False
 
 			elif(buttonB == False):
 			 	PlayQuestion(deviceName, questionB)
 			 	userChoice = "B"
-			 	Blink(3, outPinB, 0.5)
+			 	Blink(3, outPinB, 3)
 			 	GPIO.output(outPinB, 1)
 			 	waitForInput = False
 
 			elif(buttonC == False):
 			 	PlayQuestion(deviceName, questionC)
 			 	userChoice = "C"
-			 	Blink(3, outPinC, 0.5)
+			 	Blink(3, outPinC, 3)
 			 	GPIO.output(outPinC, 1)
 			 	waitForInput = False
 
 			elif(buttonD == False):
 			 	PlayQuestion(deviceName, questionD)
 			 	userChoice = "D"
-			 	Blink(3, outPinD, 0.5)
+			 	Blink(3, outPinD, 3)
 			 	GPIO.output(outPinD, 1)
 			 	waitForInput = False
 

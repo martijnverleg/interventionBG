@@ -71,6 +71,8 @@ def PlayIntro(folder):
 	subprocess.Popen([command], shell=True)
 
 def PlayQuestion(folder, question):
+	subprocess.Popen(["pkill aplay"], shell=True)
+	time.sleep(0.1)
 	command = "aplay %s/%s" % (folder, question)
 	subprocess.Popen([command], shell=True)
 
@@ -95,6 +97,10 @@ while True:
 	phoneButton = GPIO.input(phonePin)
 
 	while(phoneButton == True):
+		GPIO.output(outPinA, 1)
+		GPIO.output(outPinB, 1)
+		GPIO.output(outPinC, 1)
+		GPIO.output(outPinD, 1)
 		StartRecord()
 		PlayIntro(folder)
 		userChoice = None
@@ -115,28 +121,38 @@ while True:
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
 
+			Blink(1, outPinA, 0.333)
+			Blink(1, outPinB, 0.333)
+			Blink(1, outPinC, 0.333)
+			Blink(1, outPinD, 0.333)
+
+
 			if(buttonA == False):
 				PlayQuestion(folder, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 0.5)
+				GPIO.output(outPinA, 1)
 				waitForInput = False
 
 			elif(buttonB == False):
 			 	PlayQuestion(folder, questionB)
 			 	userChoice = "B"
 			 	Blink(3, outPinB, 0.5)
+			 	GPIO.output(outPinB, 1)
 			 	waitForInput = False
 
 			elif(buttonC == False):
 			 	PlayQuestion(folder, questionC)
 			 	userChoice = "C"
 			 	Blink(3, outPinC, 0.5)
+			 	GPIO.output(outPinC, 1)
 			 	waitForInput = False
 
 			elif(buttonD == False):
 			 	PlayQuestion(folder, questionD)
 			 	userChoice = "D"
 			 	Blink(3, outPinD, 0.5)
+			 	GPIO.output(outPinD, 1)
 			 	waitForInput = False
 
 		while isRecording == True: 

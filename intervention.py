@@ -18,7 +18,7 @@ elif(deviceName == "zekerheid"):
 	folder = "zekerheid"
 
 # !IMPORTANT! max recording time in seconds
-maxRecordTime = 15
+maxRecordTime = 300
 
 inPinA = 12
 inPinB = 16

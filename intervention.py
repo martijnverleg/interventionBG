@@ -74,7 +74,7 @@ def PlayQuestion(folder, question):
 	command = "aplay %s/%s" % (folder, question)
 	subprocess.Popen([command], shell=True)
 
-def PlayOuttro(folder):
+def PlayOutro(folder):
 	command = "aplay %s/outro.wav" % folder
 	subprocess.Popen([command], shell=True)
 
@@ -102,6 +102,12 @@ while True:
 		isRecording = True
 		startTime = time.time()
 		runTime = 0
+
+		time.sleep(60)
+		Blink(3, outPinA, 0.333)
+		Blink(3, outPinB, 0.333)
+		Blink(3, outPinC, 0.333)
+		Blink(3, outPinD, 0.333)
 
 		while waitForInput == True:
 			buttonA = GPIO.input(inPinA)
@@ -142,6 +148,8 @@ while True:
 			elif(runTime > maxRecordTime):
 				StopRecord()
 				isRecording = False
+
+		PlayOutro(folder)
 
 		ChangeFileName(userChoice)
 

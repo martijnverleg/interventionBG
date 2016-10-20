@@ -4,7 +4,7 @@ import datetime
 import subprocess
 
 # !IMPORTANT! assign unique name to device
-deviceName = "samenleving"
+deviceName = "veiligheid"
 
 # !IMPORTANT! max recording time in seconds
 maxRecordTime = 300
@@ -190,5 +190,3 @@ while True:
 		ChangeFileName(userChoice)
 
 		phoneButton = False
-
-		GPIO.cleanup()

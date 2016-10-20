@@ -4,7 +4,7 @@ import datetime
 import subprocess
 
 # !IMPORTANT! assign unique name to device
-deviceName = "vrijheid"
+deviceName = "jezelf"
 
 # !IMPORTANT! max recording time in seconds
 maxRecordTime = 300
@@ -46,6 +46,8 @@ record = None
 
 def StartRecord():
 	global record
+	subprocess.Popen(["pkill arecord"], shell=True)
+	time.sleep(0.1)
 	record = subprocess.Popen(["arecord -D plughw:1,0 record.wav"], shell=True)
 	time.sleep(2)
 
@@ -124,6 +126,7 @@ def Blink(amount, pin, duration):
 		time.sleep(duration/amount/2)
 		GPIO.output(pin, 0)
 		time.sleep(duration/amount/2)
+
 
 while True:
 	phoneButton = GPIO.input(phonePin)

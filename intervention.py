@@ -4,7 +4,7 @@ import datetime
 import subprocess
 
 # !IMPORTANT! assign unique name to device
-deviceName = "testDevice"
+deviceName = "jezelf"
 
 folder = None
 

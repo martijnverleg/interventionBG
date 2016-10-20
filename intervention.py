@@ -4,18 +4,7 @@ import datetime
 import subprocess
 
 # !IMPORTANT! assign unique name to device
-deviceName = "jezelf"
-
-folder = None
-
-if(deviceName == "jezelf"):
-	folder = "jezelf"
-elif(deviceName == "samenleving"):
-	folder = "samenleving"
-elif(deviceName == "vrijheid"):
-	folder = "vrijheid"
-elif(deviceName == "zekerheid"):
-	folder = "zekerheid"
+deviceName = "samenleving"
 
 # !IMPORTANT! max recording time in seconds
 maxRecordTime = 300
@@ -70,6 +59,47 @@ def PlayIntro(folder):
 	command = "aplay %s/intro.wav" % folder
 	subprocess.Popen([command], shell=True)
 
+	if(folder == "jezelf"): 
+		time.sleep(60)
+		Blink(3, outPinA, 0.333)
+		GPIO.output(outPinA, 1)
+		Blink(3, outPinB, 0.333)
+		GPIO.output(outPinB, 1)
+		Blink(3, outPinC, 0.333)
+		GPIO.output(outPinC, 1)
+		Blink(3, outPinD, 0.333)
+		GPIO.output(outPinD, 1)
+	elif(folder == "samenleving"):
+		time.sleep(82)
+		Blink(3, outPinA, 0.333)
+		GPIO.output(outPinA, 1)
+		Blink(3, outPinB, 0.333)
+		GPIO.output(outPinB, 1)
+		Blink(3, outPinC, 0.333)
+		GPIO.output(outPinC, 1)
+		Blink(3, outPinD, 0.333)
+		GPIO.output(outPinD, 1)
+	elif(folder == "vrijheid"):
+		time.sleep(80)
+		Blink(3, outPinA, 0.333)
+		GPIO.output(outPinA, 1)
+		Blink(3, outPinB, 0.333)
+		GPIO.output(outPinB, 1)
+		Blink(3, outPinC, 0.333)
+		GPIO.output(outPinC, 1)
+		Blink(3, outPinD, 0.333)
+		GPIO.output(outPinD, 1)
+	elif(folder == "zekerheid"):
+		time.sleep(62)
+		Blink(3, outPinA, 0.333)
+		GPIO.output(outPinA, 1)
+		Blink(3, outPinB, 0.333)
+		GPIO.output(outPinB, 1)
+		Blink(3, outPinC, 0.333)
+		GPIO.output(outPinC, 1)
+		Blink(3, outPinD, 0.333)
+		GPIO.output(outPinD, 1)
+
 def PlayQuestion(folder, question):
 	subprocess.Popen(["pkill aplay"], shell=True)
 	time.sleep(0.1)
@@ -101,19 +131,15 @@ while True:
 		GPIO.output(outPinB, 1)
 		GPIO.output(outPinC, 1)
 		GPIO.output(outPinD, 1)
-		StartRecord()
-		PlayIntro(folder)
+		
 		userChoice = None
 		waitForInput = True
 		isRecording = True
 		startTime = time.time()
 		runTime = 0
 
-		time.sleep(60)
-		Blink(3, outPinA, 0.333)
-		Blink(3, outPinB, 0.333)
-		Blink(3, outPinC, 0.333)
-		Blink(3, outPinD, 0.333)
+		StartRecord()
+		PlayIntro(deviceName)
 
 		while waitForInput == True:
 			buttonA = GPIO.input(inPinA)
@@ -121,35 +147,29 @@ while True:
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
 
-			Blink(1, outPinA, 0.333)
-			Blink(1, outPinB, 0.333)
-			Blink(1, outPinC, 0.333)
-			Blink(1, outPinD, 0.333)
-
-
 			if(buttonA == False):
-				PlayQuestion(folder, questionA)
+				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 0.5)
 				GPIO.output(outPinA, 1)
 				waitForInput = False
 
 			elif(buttonB == False):
-			 	PlayQuestion(folder, questionB)
+			 	PlayQuestion(deviceName, questionB)
 			 	userChoice = "B"
 			 	Blink(3, outPinB, 0.5)
 			 	GPIO.output(outPinB, 1)
 			 	waitForInput = False
 
 			elif(buttonC == False):
-			 	PlayQuestion(folder, questionC)
+			 	PlayQuestion(deviceName, questionC)
 			 	userChoice = "C"
 			 	Blink(3, outPinC, 0.5)
 			 	GPIO.output(outPinC, 1)
 			 	waitForInput = False
 
 			elif(buttonD == False):
-			 	PlayQuestion(folder, questionD)
+			 	PlayQuestion(deviceName, questionD)
 			 	userChoice = "D"
 			 	Blink(3, outPinD, 0.5)
 			 	GPIO.output(outPinD, 1)
@@ -165,8 +185,10 @@ while True:
 				StopRecord()
 				isRecording = False
 
-		PlayOutro(folder)
+		PlayOutro(deviceName)
 
 		ChangeFileName(userChoice)
 
-		#GPIO.cleanup()
+		phoneButton = False
+
+		GPIO.cleanup()

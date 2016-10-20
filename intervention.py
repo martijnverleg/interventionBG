@@ -127,13 +127,13 @@ while True:
 			 	Blink(3, outPinB, 0.5)
 			 	waitForInput = False
 
-			elif(buttonC == GPIO.HIGH):
+			elif(buttonC == False):
 			 	PlayQuestion(folder, questionC)
 			 	userChoice = "C"
 			 	Blink(3, outPinC, 0.5)
 			 	waitForInput = False
 
-			elif(buttonD == GPIO.HIGH):
+			elif(buttonD == False):
 			 	PlayQuestion(folder, questionD)
 			 	userChoice = "D"
 			 	Blink(3, outPinD, 0.5)

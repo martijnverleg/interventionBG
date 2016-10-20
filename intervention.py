@@ -5,6 +5,18 @@ import subprocess
 
 # !IMPORTANT! assign unique name to device
 deviceName = "testDevice"
+
+folder = None
+
+if(deviceName == "jezelf"):
+	folder = "jezelf"
+elif(deviceName == "samenleving"):
+	folder = "samenleving"
+elif(deviceName == "vrijheid"):
+	folder = "vrijheid"
+elif(deviceName == "zekerheid"):
+	folder = "zekerheid"
+
 # !IMPORTANT! max recording time in seconds
 maxRecordTime = 15
 
@@ -54,12 +66,17 @@ def StopRecord():
 	subprocess.Popen(["pkill arecord"], shell=True)
 	time.sleep(1)
 
-def PlayIntro():
-	subprocess.Popen(["aplay intro.wav"], shell=True)
+def PlayIntro(folder):
+	command = "aplay %s/intro.wav" % folder
+	subprocess.Popen([command], shell=True)
 
-def PlayQuestion(question):
-	command = "aplay %s" % question
-	subprocess.Popen([command], shell=True) 
+def PlayQuestion(folder, question):
+	command = "aplay %s/%s" % (folder, question)
+	subprocess.Popen([command], shell=True)
+
+def PlayOuttro(folder):
+	command = "aplay %s/outro.wav" % folder
+	subprocess.Popen([command], shell=True)
 
 def ChangeFileName(choice):
 	currentTime = datetime.datetime.now().strftime ("%m%d_%H%M%S")
@@ -79,7 +96,7 @@ while True:
 
 	while(phoneButton == True):
 		StartRecord()
-		PlayIntro()
+		PlayIntro(folder)
 		userChoice = None
 		waitForInput = True
 		isRecording = True
@@ -93,25 +110,25 @@ while True:
 			buttonD = GPIO.input(inPinD)
 
 			if(buttonA == False):
-				PlayQuestion(questionA)
+				PlayQuestion(folder, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 0.5)
 				waitForInput = False
 
 			elif(buttonB == False):
-			 	PlayQuestion(questionB)
+			 	PlayQuestion(folder, questionB)
 			 	userChoice = "B"
 			 	Blink(3, outPinB, 0.5)
 			 	waitForInput = False
 
 			elif(buttonC == GPIO.HIGH):
-			 	PlayQuestion(questionC)
+			 	PlayQuestion(folder, questionC)
 			 	userChoice = "C"
 			 	Blink(3, outPinC, 0.5)
 			 	waitForInput = False
 
 			elif(buttonD == GPIO.HIGH):
-			 	PlayQuestion(questionD)
+			 	PlayQuestion(folder, questionD)
 			 	userChoice = "D"
 			 	Blink(3, outPinD, 0.5)
 			 	waitForInput = False

@@ -122,7 +122,7 @@ def ChangeFileName(choice):
 
 def Blink(amount, pin, duration):
 	for x in range (0, amount):
-		delay = round(duration/amount/2, 2)
+		delay = float(duration)/amount/2
 		GPIO.output(pin, 1)
 		time.sleep(delay)
 		GPIO.output(pin, 0)

@@ -129,6 +129,15 @@ def Blink(amount, pin, duration):
 
 
 while True:
+	Blink(3, outPinA, 1.5)
+	GPIO.output(outPinA, 1)
+	Blink(3, outPinB, 2)
+	GPIO.output(outPinB, 1)
+	Blink(3, outPinC, 1.5)
+	GPIO.output(outPinC, 1)
+	Blink(3, outPinD, 1.9)
+	GPIO.output(outPinD, 1)
+		
 	phoneButton = GPIO.input(phonePin)
 
 	while(phoneButton == True):

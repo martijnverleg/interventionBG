@@ -62,7 +62,7 @@ def PlayIntro(folder):
 	subprocess.Popen([command], shell=True)
 
 	if(folder == "jezelf"): 
-		time.sleep(1) #59.5
+		time.sleep(59.5)
 		Blink(3, outPinA, 1.5)
 		GPIO.output(outPinA, 1)
 		Blink(3, outPinB, 2)
@@ -122,10 +122,11 @@ def ChangeFileName(choice):
 
 def Blink(amount, pin, duration):
 	for x in range (0, amount):
+		delay = round(duration/amount/2, 2)
 		GPIO.output(pin, 1)
-		time.sleep(duration/amount/2)
+		time.sleep(delay)
 		GPIO.output(pin, 0)
-		time.sleep(duration/amount/2)
+		time.sleep(delay)
 
 
 while True:

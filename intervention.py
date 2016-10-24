@@ -105,7 +105,7 @@ def PlayIntro(folder, process):
 		Blink(3, outPinD, 2.32)
 		GPIO.output(outPinD, 1)
 
-	process.start()
+	blinkerProcess.start()
 
 def PlayQuestion(folder, question):
 	subprocess.Popen(["pkill aplay"], shell=True)
@@ -145,11 +145,19 @@ def MultiBlink(amount, group, duration):
 				GPIO.output(member, 0)
 			time.sleep(delay)
 
+def Checker():
+	phoneButton = GPIO.input(phonePin)
+	return phoneButton
+	if phoneButton == True:
+		subprocess.Popen(["pkill aplay"], shell=True)
+		subprocess.Popen(["pkill arecord"], shell=True)
+	time.sleep(1)
 
 
 while True:
-	phoneButton = GPIO.input(phonePin)
-	process = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+	#phoneButton = GPIO.input(phonePin)
+	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+	checkerProcess = multiprocessing.Process(target=Checker)
 	
 	while(phoneButton == False):
 		GPIO.output(outPinA, 1)
@@ -164,7 +172,7 @@ while True:
 		runTime = 0
 
 		StartRecord()
-		PlayIntro(deviceName, process)
+		PlayIntro(deviceName, blinkerProcess)
 
 		while waitForInput == True:
 			buttonA = GPIO.input(inPinA)
@@ -173,8 +181,8 @@ while True:
 			buttonD = GPIO.input(inPinD)
 
 			if(buttonA == False):
-				process.terminate()
-				process.join()
+				blinkerProcess.terminate()
+				blinkerProcess.join()
 				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 3)
@@ -182,8 +190,8 @@ while True:
 				waitForInput = False
 
 			elif(buttonB == False):
-				process.terminate()
-				process.join()
+				blinkerProcess.terminate()
+				blinkerProcess.join()
 				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
@@ -191,8 +199,8 @@ while True:
 				waitForInput = False
 
 			elif(buttonC == False):
-				process.terminate()
-				process.join()
+				blinkerProcess.terminate()
+				blinkerProcess.join()
 				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
@@ -200,8 +208,8 @@ while True:
 				waitForInput = False
 
 			elif(buttonD == False):
-				process.terminate()
-				process.join()
+				blinkerProcess.terminate()
+				blinkerProcess.join()
 				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)

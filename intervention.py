@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import datetime
 import subprocess
+import thread
 
 # !IMPORTANT! assign unique name to device
 deviceName = "jezelf"
@@ -19,6 +20,8 @@ outPinC = 19
 outPinD = 26
 phonePin = 18
 stopPin = 17
+
+outputArray = [outPinA,outPinB, outPinC, outPinD]
 
 # setup GPIO
 GPIO.setmode(GPIO.BCM)
@@ -62,44 +65,44 @@ def PlayIntro(folder):
 	subprocess.Popen([command], shell=True)
 
 	if(folder == "jezelf"): 
-		time.sleep(59.5)
-		Blink(3, outPinA, 1.5)
+		time.sleep(52.28)
+		Blink(3, outPinA, 1.48)
 		GPIO.output(outPinA, 1)
-		Blink(3, outPinB, 2)
+		Blink(3, outPinB, 2.08)
 		GPIO.output(outPinB, 1)
-		Blink(3, outPinC, 2)
+		Blink(3, outPinC, 1.96)
 		GPIO.output(outPinC, 1)
-		Blink(3, outPinD, 2.3)
+		Blink(3, outPinD, 2.6)
 		GPIO.output(outPinD, 1)
 	elif(folder == "samenleving"):
-		time.sleep(82)
+		time.sleep(71.92)
 		Blink(3, outPinA, 2)
 		GPIO.output(outPinA, 1)
-		Blink(3, outPinB, 2.1)
+		Blink(3, outPinB, 2.04)
 		GPIO.output(outPinB, 1)
-		Blink(3, outPinC, 2.15)
+		Blink(3, outPinC, 2.2)
 		GPIO.output(outPinC, 1)
-		Blink(3, outPinD, 2.2)
+		Blink(3, outPinD, 3.28)
 		GPIO.output(outPinD, 1)
 	elif(folder == "vrijheid"):
-		time.sleep(80)
-		Blink(3, outPinA, 2.5)
+		time.sleep(72.84)
+		Blink(3, outPinA, 2.56)
 		GPIO.output(outPinA, 1)
-		Blink(3, outPinB, 2)
+		Blink(3, outPinB, 1.92)
 		GPIO.output(outPinB, 1)
-		Blink(3, outPinC, 3)
+		Blink(3, outPinC, 2.96)
 		GPIO.output(outPinC, 1)
-		Blink(3, outPinD, 2.75)
+		Blink(3, outPinD, 2.72)
 		GPIO.output(outPinD, 1)
 	elif(folder == "zekerheid"):
-		time.sleep(62)
-		Blink(3, outPinA, 1.5)
+		time.sleep(55.84)
+		Blink(3, outPinA, 1.68)
 		GPIO.output(outPinA, 1)
-		Blink(3, outPinB, 2)
+		Blink(3, outPinB, 1.84)
 		GPIO.output(outPinB, 1)
-		Blink(3, outPinC, 1.5)
+		Blink(3, outPinC, 1.72)
 		GPIO.output(outPinC, 1)
-		Blink(3, outPinD, 1.9)
+		Blink(3, outPinD, 2.32)
 		GPIO.output(outPinD, 1)
 
 def PlayQuestion(folder, question):
@@ -121,16 +124,27 @@ def ChangeFileName(choice):
 	subprocess.Popen([command], shell=True)
 
 def Blink(amount, pin, duration):
+	delay = float(duration)/amount/2
 	for x in range (0, amount):
-		delay = float(duration)/amount/2
 		GPIO.output(pin, 1)
 		time.sleep(delay)
 		GPIO.output(pin, 0)
 		time.sleep(delay)
 
+def MultiBlink(amount, group, duration):
+	delay = float(duration)/amount/2
+	for x in range (0, amount):
+		for member in group:
+			GPIO.output(member, 1)
+			time.sleep(delay)
+		for member in group:
+			GPIO.output(member, 0)
+			time.sleep(delay)
 
 while True:
 	phoneButton = GPIO.input(phonePin)
+
+	MultiBlink(3, outputArray, 3)
 
 	while(phoneButton == True):
 		GPIO.output(outPinA, 1)

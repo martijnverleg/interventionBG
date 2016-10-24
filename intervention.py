@@ -154,11 +154,10 @@ def Checker():
 			subprocess.Popen(["pkill arecord"], shell=True)
 		time.sleep(1)
 
-checkerProcess = multiprocessing.Process(target=Checker)
-
 while True:
 	phoneButton = GPIO.input(phonePin)
 	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+	checkerProcess = multiprocessing.Process(target=Checker)
 	checkerProcess.start()
 	
 	while(phoneButton == False):

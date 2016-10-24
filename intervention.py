@@ -149,17 +149,11 @@ def Checker():
 	while True:
 		phoneButton = GPIO.input(phonePin)
 		if phoneButton == True:
-			break
 			subprocess.Popen(["pkill aplay"], shell=True)
 			subprocess.Popen(["pkill arecord"], shell=True)
 		time.sleep(1)
 
-while True:
-	phoneButton = GPIO.input(phonePin)
-	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
-	checkerProcess = multiprocessing.Process(target=Checker)
-	checkerProcess.start()
-	
+def Main():
 	while(phoneButton == False):
 		GPIO.output(outPinA, 1)
 		GPIO.output(outPinB, 1)
@@ -231,6 +225,29 @@ while True:
 
 		ChangeFileName(userChoice)
 		phoneButton = True
+
+while True:
+	mainProcess = multiprocessing.Process(target=Main)
+	phoneButton = GPIO.input(phonePin)
+	if phoneButton == False:
+		mainProcess.start()
+	elif phoneButton == True:
+		mainProcess.terminate()
+		mainProcess.join()
+		subprocess.Popen(["pkill aplay"], shell=True)
+		subprocess.Popen(["pkill arecord"], shell=True)
+	time.sleep(1)
+
+
+"""
+while True:
+	phoneButton = GPIO.input(phonePin)
 	
+	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+	checkerProcess = multiprocessing.Process(target=Checker)
+	mainProcess = multiprocessing.Process(target=Main)
+	checkerProcess.start()
+	mainProcess.Start()
+
 	checkerProcess.terminate()
 	checkerProcess.join()

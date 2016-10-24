@@ -47,6 +47,8 @@ questionD = 'question_d.wav'
 
 record = None
 
+process = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+
 def StartRecord():
 	global record
 	subprocess.Popen(["pkill arecord"], shell=True)
@@ -60,7 +62,7 @@ def StopRecord():
 	subprocess.Popen(["pkill arecord"], shell=True)
 	time.sleep(1)
 
-def PlayIntro(folder):
+def PlayIntro(folder, process):
 	command = "aplay %s/intro.wav" % folder
 	subprocess.Popen([command], shell=True)
 
@@ -105,8 +107,8 @@ def PlayIntro(folder):
 		Blink(3, outPinD, 2.32)
 		GPIO.output(outPinD, 1)
 
-	p = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
-	p.start()
+	
+	process.start()
 
 def PlayQuestion(folder, question):
 	subprocess.Popen(["pkill aplay"], shell=True)
@@ -162,15 +164,13 @@ while True:
 		runTime = 0
 
 		StartRecord()
-		PlayIntro(deviceName)
+		PlayIntro(deviceName, process)
 
 		while waitForInput == True:
 			buttonA = GPIO.input(inPinA)
 			buttonB = GPIO.input(inPinB)
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
-
-			
 
 			if(buttonA == False):
 				p.terminate()

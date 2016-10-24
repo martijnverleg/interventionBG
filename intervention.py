@@ -217,7 +217,7 @@ while True:
 				GPIO.output(outPinD, 1)
 				waitForInput = False
 
-			elif(runtime > 100 or phoneButton == True):
+			elif(runTime > 100 or phoneButton == True):
 				StopRecord()
 				isRecording = False
 				break

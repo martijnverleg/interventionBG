@@ -47,7 +47,7 @@ questionD = 'question_d.wav'
 
 record = None
 
-process = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+
 
 def StartRecord():
 	global record
@@ -147,6 +147,8 @@ def MultiBlink(amount, group, duration):
 			for member in group:
 				GPIO.output(member, 0)
 			time.sleep(delay)
+
+process = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
 
 while True:
 	phoneButton = GPIO.input(phonePin)

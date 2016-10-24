@@ -46,7 +46,6 @@ questionC = 'question_c.wav'
 questionD = 'question_d.wav'
 
 record = None
-phoneButton = None
 
 def StartRecord():
 	global record
@@ -148,20 +147,18 @@ def MultiBlink(amount, group, duration):
 
 def Checker():
 	while True:
-		global phoneButton
 		phoneButton = GPIO.input(phonePin)
+		print(phoneButton)
 		if phoneButton == True:
 			subprocess.Popen(["pkill aplay"], shell=True)
 			subprocess.Popen(["pkill arecord"], shell=True)
 		time.sleep(1)
 
+checkerProcess = multiprocessing.Process(target=Checker)
 
 while True:
-	#phoneButton = GPIO.input(phonePin)
+	phoneButton = GPIO.input(phonePin)
 	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
-	checkerProcess = multiprocessing.Process(target=Checker)
-
-	print(phoneButton)
 	
 	while(phoneButton == False):
 		GPIO.output(outPinA, 1)

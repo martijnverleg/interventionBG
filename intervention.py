@@ -180,9 +180,9 @@ while True:
 			if(buttonA == False):
 				blinkerProcess.terminate()
 				blinkerProcess.join()
-				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 3)
+				PlayQuestion(deviceName, questionA)
 				for pin in outputArray:
 					if pin == outPinA:
 						GPIO.output(pin, 1)
@@ -193,9 +193,9 @@ while True:
 			elif(buttonB == False):
 				blinkerProcess.terminate()
 				blinkerProcess.join()
-				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
+				PlayQuestion(deviceName, questionB)
 				for pin in outputArray:
 					if pin == outPinB:
 						GPIO.output(pin, 1)
@@ -206,9 +206,9 @@ while True:
 			elif(buttonC == False):
 				blinkerProcess.terminate()
 				blinkerProcess.join()
-				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
+				PlayQuestion(deviceName, questionC)
 				for pin in outputArray:
 					if pin == outPinC:
 						GPIO.output(pin, 1)
@@ -219,9 +219,9 @@ while True:
 			elif(buttonD == False):
 				blinkerProcess.terminate()
 				blinkerProcess.join()
-				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)
+				PlayQuestion(deviceName, questionD)
 				for pin in outputArray:
 					if pin == outPinD:
 						GPIO.output(pin, 1)

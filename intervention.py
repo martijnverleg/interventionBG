@@ -144,7 +144,7 @@ def MultiBlink(amount, group, duration):
 			for member in group:
 				GPIO.output(member, 0)
 			time.sleep(delay)
-
+"""
 def Checker():
 	while True:
 		phoneButton = GPIO.input(phonePin)
@@ -152,8 +152,9 @@ def Checker():
 			subprocess.Popen(["pkill aplay"], shell=True)
 			subprocess.Popen(["pkill arecord"], shell=True)
 		time.sleep(1)
-
-def Main():
+"""
+def Main(phoneButton):
+	phoneButton = phoneButton
 	while(phoneButton == False):
 		GPIO.output(outPinA, 1)
 		GPIO.output(outPinB, 1)
@@ -227,7 +228,7 @@ def Main():
 		phoneButton = True
 
 while True:
-	mainProcess = multiprocessing.Process(target=Main)
+	mainProcess = multiprocessing.Process(target=Main, args=phoneButton)
 	phoneButton = GPIO.input(phonePin)
 	if phoneButton == False:
 		mainProcess.start()

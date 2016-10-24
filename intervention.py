@@ -159,6 +159,7 @@ checkerProcess = multiprocessing.Process(target=Checker)
 while True:
 	phoneButton = GPIO.input(phonePin)
 	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+	checkerProcess.start()
 	
 	while(phoneButton == False):
 		GPIO.output(outPinA, 1)
@@ -231,4 +232,6 @@ while True:
 
 		ChangeFileName(userChoice)
 
+		checkerProcess.terminate()
+		checkerProcess.join()
 		phoneButton = True

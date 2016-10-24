@@ -136,10 +136,11 @@ def MultiBlink(amount, group, duration):
 	for x in range (0, amount):
 		for member in group:
 			GPIO.output(member, 1)
-			time.sleep(delay)
+		time.sleep(delay)
+		
 		for member in group:
 			GPIO.output(member, 0)
-			time.sleep(delay)
+		time.sleep(delay)
 
 while True:
 	phoneButton = GPIO.input(phonePin)

@@ -171,7 +171,6 @@ while True:
 			p.start()
 
 			if(buttonA == False):
-				p.shutdown()
 				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 3)
@@ -180,7 +179,6 @@ while True:
 
 
 			elif(buttonB == False):
-				p.shutdown()
 				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
@@ -188,7 +186,6 @@ while True:
 				waitForInput = False
 
 			elif(buttonC == False):
-				p.shutdown()
 				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
@@ -196,7 +193,6 @@ while True:
 				waitForInput = False
 
 			elif(buttonD == False):
-				p.shutdown()
 				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)

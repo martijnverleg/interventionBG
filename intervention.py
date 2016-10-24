@@ -132,7 +132,7 @@ def Blink(amount, pin, duration):
 		time.sleep(delay)
 
 def MultiBlink(amount, group, duration):
-	while waitForInput == True:
+	while p.is_alive() == True:
 		delay = float(duration)/amount/2
 		for x in range (0, amount):
 			for member in group:
@@ -167,10 +167,13 @@ while True:
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
 
-			p = multiprocessing.Process(target=MultiBlink, args=(3, outputArray, 3,))
+			p = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1,))
 			p.start()
 
 			if(buttonA == False):
+				p.terminate()
+				p.join()
+				print(p.is_alive())
 				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 3)
@@ -179,6 +182,9 @@ while True:
 
 
 			elif(buttonB == False):
+				p.terminate()
+				p.join()
+				print(p.is_alive())
 				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
@@ -186,6 +192,9 @@ while True:
 				waitForInput = False
 
 			elif(buttonC == False):
+				p.terminate()
+				p.join()
+				print(p.is_alive())
 				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
@@ -193,6 +202,9 @@ while True:
 				waitForInput = False
 
 			elif(buttonD == False):
+				p.terminate()
+				p.join()
+				print(p.is_alive())
 				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)

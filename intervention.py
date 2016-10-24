@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import datetime
 import subprocess
-import threading
+import multiprocessing
 
 # !IMPORTANT! assign unique name to device
 deviceName = "jezelf"
@@ -168,17 +168,20 @@ while True:
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
 
-			t = threading.Thread(target=MultiBlink, args=(3, outputArray, 3))
-			t.start()
+			p = multiprocessing.Process(target=MultiBlink, args=(3, outputArray, 3))
+			p.start()
 
 			if(buttonA == False):
+				p.terminate()
 				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 3)
 				GPIO.output(outPinA, 1)
 				waitForInput = False
 
+
 			elif(buttonB == False):
+				p.terminate()
 				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
@@ -186,6 +189,7 @@ while True:
 				waitForInput = False
 
 			elif(buttonC == False):
+				p.terminate()
 				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
@@ -193,6 +197,7 @@ while True:
 				waitForInput = False
 
 			elif(buttonD == False):
+				p.terminate()
 				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)

@@ -196,7 +196,8 @@ while True:
 				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
-				if pin == outPinB:
+				for pin in outputArray:
+					if pin == outPinB:
 						GPIO.output(pin, 1)
 					else:
 						GPIO.output(pin, 0)
@@ -208,7 +209,8 @@ while True:
 				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
-				if pin == outPinC:
+				for pin in outputArray:
+					if pin == outPinC:
 						GPIO.output(pin, 1)
 					else:
 						GPIO.output(pin, 0)
@@ -220,7 +222,8 @@ while True:
 				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)
-				if pin == outPinD:
+				for pin in outputArray:
+					if pin == outPinD:
 						GPIO.output(pin, 1)
 					else:
 						GPIO.output(pin, 0)

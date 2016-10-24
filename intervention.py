@@ -46,6 +46,7 @@ questionC = 'question_c.wav'
 questionD = 'question_d.wav'
 
 record = None
+phoneButton = None
 
 def StartRecord():
 	global record

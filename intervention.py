@@ -168,7 +168,7 @@ while True:
 			buttonD = GPIO.input(inPinD)
 
 			t = threading.Thread(target=MultiBlink, args=(3, outputArray, 3))
-		    t.start()
+			t.start()
 
 			if(buttonA == False):
 				PlayQuestion(deviceName, questionA)
@@ -178,25 +178,25 @@ while True:
 				waitForInput = False
 
 			elif(buttonB == False):
-			 	PlayQuestion(deviceName, questionB)
-			 	userChoice = "B"
-			 	Blink(3, outPinB, 3)
-			 	GPIO.output(outPinB, 1)
-			 	waitForInput = False
+				PlayQuestion(deviceName, questionB)
+				userChoice = "B"
+				Blink(3, outPinB, 3)
+				GPIO.output(outPinB, 1)
+				waitForInput = False
 
 			elif(buttonC == False):
-			 	PlayQuestion(deviceName, questionC)
-			 	userChoice = "C"
-			 	Blink(3, outPinC, 3)
-			 	GPIO.output(outPinC, 1)
-			 	waitForInput = False
+				PlayQuestion(deviceName, questionC)
+				userChoice = "C"
+				Blink(3, outPinC, 3)
+				GPIO.output(outPinC, 1)
+				waitForInput = False
 
 			elif(buttonD == False):
-			 	PlayQuestion(deviceName, questionD)
-			 	userChoice = "D"
-			 	Blink(3, outPinD, 3)
-			 	GPIO.output(outPinD, 1)
-			 	waitForInput = False
+				PlayQuestion(deviceName, questionD)
+				userChoice = "D"
+				Blink(3, outPinD, 3)
+				GPIO.output(outPinD, 1)
+				waitForInput = False
 
 		while isRecording == True: 
 			runTime = int(float(time.time() - startTime))

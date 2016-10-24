@@ -144,7 +144,7 @@ def MultiBlink(amount, group, duration):
 			for member in group:
 				GPIO.output(member, 0)
 			time.sleep(delay)
-"""
+
 def Checker():
 	while True:
 		phoneButton = GPIO.input(phonePin)
@@ -152,10 +152,16 @@ def Checker():
 			subprocess.Popen(["pkill aplay"], shell=True)
 			subprocess.Popen(["pkill arecord"], shell=True)
 		time.sleep(1)
-"""
-def Main(phoneButton):
-	phoneButton = phoneButton
 
+while True:
+	phoneButton = GPIO.input(phonePin)
+	
+	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+	checkerProcess = multiprocessing.Process(target=Checker)
+	mainProcess = multiprocessing.Process(target=Main)
+	checkerProcess.start()
+
+	
 	while(phoneButton == False):
 		GPIO.output(outPinA, 1)
 		GPIO.output(outPinB, 1)
@@ -176,7 +182,10 @@ def Main(phoneButton):
 			buttonB = GPIO.input(inPinB)
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
+			phoneButton = GPIO.input(phonePin)
 
+			runTime = int(float(time.time() - startTime))
+			
 			if(buttonA == False):
 				blinkerProcess.terminate()
 				blinkerProcess.join()
@@ -213,6 +222,12 @@ def Main(phoneButton):
 				GPIO.output(outPinD, 1)
 				waitForInput = False
 
+			elif(runtime > 100 or phoneButton == True):
+				StopRecord()
+				isRecording = False
+				break
+
+
 		while isRecording == True: 
 			runTime = int(float(time.time() - startTime))
 			stopButton = GPIO.input(stopPin)
@@ -227,34 +242,6 @@ def Main(phoneButton):
 
 		ChangeFileName(userChoice)
 		phoneButton = True
-
-while True:
-	phoneButton = GPIO.input(phonePin)
-	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
-	mainProcess = multiprocessing.Process(target=Main, args=(phoneButton,))
-
-	if phoneButton == False:
-		mainProcess.start()
 	
-	while mainProcess.is_alive():
-		if phoneButton == True:
-			mainProcess.terminate()
-			mainProcess.join()
-			subprocess.Popen(["pkill aplay"], shell=True)
-			subprocess.Popen(["pkill arecord"], shell=True)
-	time.sleep(1)
-
-
-"""
-while True:
-	phoneButton = GPIO.input(phonePin)
-	
-	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
-	checkerProcess = multiprocessing.Process(target=Checker)
-	mainProcess = multiprocessing.Process(target=Main)
-	checkerProcess.start()
-	mainProcess.Start()
-
 	checkerProcess.terminate()
 	checkerProcess.join()
-"""

@@ -47,8 +47,6 @@ questionD = 'question_d.wav'
 
 record = None
 
-
-
 def StartRecord():
 	global record
 	subprocess.Popen(["pkill arecord"], shell=True)
@@ -107,7 +105,6 @@ def PlayIntro(folder, process):
 		Blink(3, outPinD, 2.32)
 		GPIO.output(outPinD, 1)
 
-	
 	process.start()
 
 def PlayQuestion(folder, question):
@@ -148,10 +145,11 @@ def MultiBlink(amount, group, duration):
 				GPIO.output(member, 0)
 			time.sleep(delay)
 
-process = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+
 
 while True:
 	phoneButton = GPIO.input(phonePin)
+	process = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
 	
 	while(phoneButton == True):
 		GPIO.output(outPinA, 1)
@@ -177,18 +175,15 @@ while True:
 			if(buttonA == False):
 				process.terminate()
 				process.join()
-				print(process.is_alive())
 				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 3)
 				GPIO.output(outPinA, 1)
 				waitForInput = False
 
-
 			elif(buttonB == False):
 				process.terminate()
 				process.join()
-				print(process.is_alive())
 				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
@@ -198,7 +193,6 @@ while True:
 			elif(buttonC == False):
 				process.terminate()
 				process.join()
-				print(process.is_alive())
 				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
@@ -208,7 +202,6 @@ while True:
 			elif(buttonD == False):
 				process.terminate()
 				process.join()
-				print(process.is_alive())
 				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)

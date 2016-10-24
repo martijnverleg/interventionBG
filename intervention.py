@@ -213,7 +213,7 @@ while True:
 				GPIO.output(outPinD, 1)
 				waitForInput = False
 
-			elif(runTime > 100 or phoneButton == True):
+			elif(runTime > maxRecordTime or phoneButton == True):
 				StopRecord()
 				blinkerProcess.terminate()
 				blinkerProcess.join()
@@ -244,3 +244,4 @@ while True:
 
 		ChangeFileName(userChoice)
 		phoneButton = True
+	time.sleep(.1)

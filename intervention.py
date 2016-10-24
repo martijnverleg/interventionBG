@@ -214,7 +214,6 @@ while True:
 				waitForInput = False
 
 			elif(runTime > maxRecordTime or phoneButton == True):
-				print("WRONG TURN")
 				StopRecord()
 				blinkerProcess.terminate()
 				blinkerProcess.join()
@@ -235,7 +234,7 @@ while True:
 			elif(runTime > maxRecordTime):
 				StopRecord()
 				isRecording = False
-			elif(phoneButton == False):
+			elif(phoneButton == True):
 				StopRecord()
 				terminated = True
 				isRecording = False

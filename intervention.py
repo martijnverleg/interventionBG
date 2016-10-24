@@ -152,6 +152,8 @@ while True:
 	process = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
 	
 	while(phoneButton == False):
+		phoneButton = GPIO.input(phonePin)
+
 		GPIO.output(outPinA, 1)
 		GPIO.output(outPinB, 1)
 		GPIO.output(outPinC, 1)
@@ -167,6 +169,8 @@ while True:
 		PlayIntro(deviceName, process)
 
 		while waitForInput == True:
+			phoneButton = GPIO.input(phonePin)
+
 			buttonA = GPIO.input(inPinA)
 			buttonB = GPIO.input(inPinB)
 			buttonC = GPIO.input(inPinC)
@@ -209,6 +213,7 @@ while True:
 				waitForInput = False
 
 		while isRecording == True: 
+			phoneButton = GPIO.input(phonePin)
 			runTime = int(float(time.time() - startTime))
 			stopButton = GPIO.input(stopPin)
 			if(stopButton == False):

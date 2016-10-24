@@ -147,7 +147,7 @@ def MultiBlink(amount, group, duration):
 			time.sleep(delay)
 
 def Checker():
-	While True:
+	while True:
 		global phoneButton
 		phoneButton = GPIO.input(phonePin)
 		if phoneButton == True:

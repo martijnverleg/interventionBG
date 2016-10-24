@@ -65,7 +65,7 @@ def PlayIntro(folder):
 	subprocess.Popen([command], shell=True)
 
 	if(folder == "jezelf"): 
-		time.sleep(52.28)
+		time.sleep(1) #52.28
 		Blink(3, outPinA, 1.48)
 		GPIO.output(outPinA, 1)
 		Blink(3, outPinB, 2.08)
@@ -75,7 +75,7 @@ def PlayIntro(folder):
 		Blink(3, outPinD, 2.6)
 		GPIO.output(outPinD, 1)
 	elif(folder == "samenleving"):
-		time.sleep(71.92)
+		time.sleep(1) #71.92
 		Blink(3, outPinA, 2)
 		GPIO.output(outPinA, 1)
 		Blink(3, outPinB, 2.04)
@@ -85,7 +85,7 @@ def PlayIntro(folder):
 		Blink(3, outPinD, 3.28)
 		GPIO.output(outPinD, 1)
 	elif(folder == "vrijheid"):
-		time.sleep(72.84)
+		time.sleep(1) #72.84
 		Blink(3, outPinA, 2.56)
 		GPIO.output(outPinA, 1)
 		Blink(3, outPinB, 1.92)
@@ -95,7 +95,7 @@ def PlayIntro(folder):
 		Blink(3, outPinD, 2.72)
 		GPIO.output(outPinD, 1)
 	elif(folder == "zekerheid"):
-		time.sleep(55.84)
+		time.sleep(1) #55.84
 		Blink(3, outPinA, 1.68)
 		GPIO.output(outPinA, 1)
 		Blink(3, outPinB, 1.84)
@@ -144,9 +144,7 @@ def MultiBlink(amount, group, duration):
 
 while True:
 	phoneButton = GPIO.input(phonePin)
-
-	MultiBlink(3, outputArray, 3)
-
+	t = threading.Thread(target=worker)
 	while(phoneButton == True):
 		GPIO.output(outPinA, 1)
 		GPIO.output(outPinB, 1)
@@ -167,6 +165,9 @@ while True:
 			buttonB = GPIO.input(inPinB)
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
+
+			
+		    t.start()
 
 			if(buttonA == False):
 				PlayQuestion(deviceName, questionA)

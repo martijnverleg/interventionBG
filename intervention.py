@@ -160,6 +160,8 @@ while True:
 	#phoneButton = GPIO.input(phonePin)
 	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
 	checkerProcess = multiprocessing.Process(target=Checker)
+
+	print(phoneButton)
 	
 	while(phoneButton == False):
 		GPIO.output(outPinA, 1)

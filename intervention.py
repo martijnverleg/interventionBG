@@ -167,7 +167,7 @@ while True:
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
 
-			p = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1,))
+			p = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
 			p.start()
 
 			if(buttonA == False):

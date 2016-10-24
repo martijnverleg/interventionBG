@@ -147,13 +147,6 @@ def MultiBlink(amount, group, duration):
 				GPIO.output(member, 0)
 			time.sleep(delay)
 
-def Checker():
-	while True:
-		phoneButton = GPIO.input(phonePin)
-		if phoneButton == True:
-			subprocess.Popen(["pkill aplay"], shell=True)
-			subprocess.Popen(["pkill arecord"], shell=True)
-		time.sleep(1)
 
 while True:
 	phoneButton = GPIO.input(phonePin)
@@ -222,8 +215,9 @@ while True:
 			elif(runTime > 100 or phoneButton == True):
 				StopRecord()
 				isRecording = False
+				for pin in outputArray:
+					GPIO.output(pin, 0)
 				break
-
 
 		while isRecording == True: 
 			runTime = int(float(time.time() - startTime))
@@ -239,7 +233,3 @@ while True:
 
 		ChangeFileName(userChoice)
 		phoneButton = True
-	"""
-	checkerProcess.terminate()
-	checkerProcess.join()
-	"""

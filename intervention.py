@@ -260,6 +260,9 @@ while True:
 
 		ChangeFileName(userChoice)
 
+		for pin in outputArray:
+			GPIO.output(pin, 0)
+
 		while phoneButton == False:
 			phoneButton = GPIO.input(phonePin)
 			time.sleep(.1)

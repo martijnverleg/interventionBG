@@ -144,7 +144,7 @@ def MultiBlink(amount, group, duration):
 
 while True:
 	phoneButton = GPIO.input(phonePin)
-	t = threading.Thread(target=MultiBlink, args=(3, outputArray, 3))
+	
 
 	while(phoneButton == True):
 		GPIO.output(outPinA, 1)
@@ -167,7 +167,7 @@ while True:
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
 
-			
+			t = threading.Thread(target=MultiBlink, args=(3, outputArray, 3))
 		    t.start()
 
 			if(buttonA == False):

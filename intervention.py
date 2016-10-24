@@ -183,7 +183,11 @@ while True:
 				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 3)
-				GPIO.output(outPinA, 1)
+				for pin in outputArray:
+					if pin == outPinA:
+						GPIO.output(pin, 1)
+					else:
+						GPIO.output(pin, 0)
 				waitForInput = False
 
 			elif(buttonB == False):
@@ -192,7 +196,10 @@ while True:
 				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
-				GPIO.output(outPinB, 1)
+				if pin == outPinA:
+						GPIO.output(pin, 1)
+					else:
+						GPIO.output(pin, 0)
 				waitForInput = False
 
 			elif(buttonC == False):
@@ -201,7 +208,10 @@ while True:
 				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
-				GPIO.output(outPinC, 1)
+				if pin == outPinA:
+						GPIO.output(pin, 1)
+					else:
+						GPIO.output(pin, 0)
 				waitForInput = False
 
 			elif(buttonD == False):
@@ -210,7 +220,10 @@ while True:
 				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)
-				GPIO.output(outPinD, 1)
+				if pin == outPinA:
+						GPIO.output(pin, 1)
+					else:
+						GPIO.output(pin, 0)
 				waitForInput = False
 
 			elif(runTime > maxRecordTime or phoneButton == True):

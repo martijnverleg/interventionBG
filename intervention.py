@@ -229,7 +229,7 @@ def Main(phoneButton):
 
 while True:
 	phoneButton = GPIO.input(phonePin)
-	mainProcess = multiprocessing.Process(target=Main, args=phoneButton)
+	mainProcess = multiprocessing.Process(target=Main, args=(phoneButton))
 	if phoneButton == False:
 		mainProcess.start()
 	elif phoneButton == True:

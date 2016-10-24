@@ -251,3 +251,4 @@ while True:
 
 	checkerProcess.terminate()
 	checkerProcess.join()
+"""

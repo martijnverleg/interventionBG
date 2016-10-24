@@ -20,6 +20,7 @@ outPinC = 19
 outPinD = 26
 phonePin = 18
 stopPin = 17
+stopLED = 4
 
 outputArray = [outPinA,outPinB, outPinC, outPinD]
 
@@ -188,6 +189,7 @@ while True:
 						GPIO.output(pin, 1)
 					else:
 						GPIO.output(pin, 0)
+				GPIO.output(stopLED, 1)
 				waitForInput = False
 
 			elif(buttonB == False):
@@ -201,6 +203,7 @@ while True:
 						GPIO.output(pin, 1)
 					else:
 						GPIO.output(pin, 0)
+				GPIO.output(stopLED, 1)
 				waitForInput = False
 
 			elif(buttonC == False):
@@ -214,6 +217,7 @@ while True:
 						GPIO.output(pin, 1)
 					else:
 						GPIO.output(pin, 0)
+				GPIO.output(stopLED, 1)
 				waitForInput = False
 
 			elif(buttonD == False):
@@ -227,6 +231,7 @@ while True:
 						GPIO.output(pin, 1)
 					else:
 						GPIO.output(pin, 0)
+				GPIO.output(stopLED, 1)
 				waitForInput = False
 
 			elif(runTime > maxRecordTime or phoneButton == True):
@@ -262,6 +267,7 @@ while True:
 
 		for pin in outputArray:
 			GPIO.output(pin, 0)
+		GPIO.output(stopLED, 0)
 
 		while phoneButton == False:
 			phoneButton = GPIO.input(phonePin)

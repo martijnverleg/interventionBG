@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import datetime
 import subprocess
-import thread
+import threading
 
 # !IMPORTANT! assign unique name to device
 deviceName = "jezelf"

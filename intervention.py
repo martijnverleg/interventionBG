@@ -61,6 +61,8 @@ def StopRecord():
 	time.sleep(1)
 
 def PlayIntro(folder, process):
+	subprocess.Popen(["pkill aplay"], shell=True)
+	time.sleep(0.1)
 	command = "aplay %s/intro.wav" % folder
 	subprocess.Popen([command], shell=True)
 

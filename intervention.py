@@ -159,6 +159,7 @@ while True:
 		GPIO.output(outPinD, 1)
 		
 		userChoice = None
+		terminated = False
 		waitForInput = True
 		isRecording = True
 		startTime = time.time()
@@ -214,10 +215,14 @@ while True:
 
 			elif(runTime > 100 or phoneButton == True):
 				StopRecord()
-				isRecording = False
+				blinkerProcess.terminate()
+				blinkerProcess.join()
+				userChoice = "terminated"
 				for pin in outputArray:
 					GPIO.output(pin, 0)
-				break
+				isRecording = False
+				waitForInput = False
+				terminated = True
 
 		while isRecording == True: 
 			runTime = int(float(time.time() - startTime))
@@ -229,7 +234,8 @@ while True:
 				StopRecord()
 				isRecording = False
 
-		PlayOutro(deviceName)
+		if terminated == False:
+			PlayOutro(deviceName)
 
 		ChangeFileName(userChoice)
 		phoneButton = True

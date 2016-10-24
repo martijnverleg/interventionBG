@@ -236,6 +236,7 @@ while True:
 				isRecording = False
 			elif(phoneButton == False):
 				StopRecord()
+				terminated = True
 				isRecording = False
 
 		if terminated == False:

@@ -151,7 +151,7 @@ while True:
 	phoneButton = GPIO.input(phonePin)
 	process = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
 	
-	while(phoneButton == True):
+	while(phoneButton == False):
 		GPIO.output(outPinA, 1)
 		GPIO.output(outPinB, 1)
 		GPIO.output(outPinC, 1)

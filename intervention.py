@@ -227,10 +227,14 @@ while True:
 		while isRecording == True: 
 			runTime = int(float(time.time() - startTime))
 			stopButton = GPIO.input(stopPin)
+			phoneButton = GPIO.input(phonePin)
 			if(stopButton == False):
 				StopRecord()
 				isRecording = False
 			elif(runTime > maxRecordTime):
+				StopRecord()
+				isRecording = False
+			elif(phoneButton == False):
 				StopRecord()
 				isRecording = False
 

@@ -132,7 +132,7 @@ def Blink(amount, pin, duration):
 		time.sleep(delay)
 
 def MultiBlink(amount, group, duration):
-	While waitForInput == True:
+	while waitForInput == True:
 		delay = float(duration)/amount/2
 		for x in range (0, amount):
 			for member in group:

@@ -175,9 +175,9 @@ while True:
 			buttonD = GPIO.input(inPinD)
 
 			if(buttonA == False):
-				p.terminate()
-				p.join()
-				print(p.is_alive())
+				process.terminate()
+				process.join()
+				print(process.is_alive())
 				PlayQuestion(deviceName, questionA)
 				userChoice = "A"
 				Blink(3, outPinA, 3)
@@ -186,9 +186,9 @@ while True:
 
 
 			elif(buttonB == False):
-				p.terminate()
-				p.join()
-				print(p.is_alive())
+				process.terminate()
+				process.join()
+				print(process.is_alive())
 				PlayQuestion(deviceName, questionB)
 				userChoice = "B"
 				Blink(3, outPinB, 3)
@@ -196,9 +196,9 @@ while True:
 				waitForInput = False
 
 			elif(buttonC == False):
-				p.terminate()
-				p.join()
-				print(p.is_alive())
+				process.terminate()
+				process.join()
+				print(process.is_alive())
 				PlayQuestion(deviceName, questionC)
 				userChoice = "C"
 				Blink(3, outPinC, 3)
@@ -206,9 +206,9 @@ while True:
 				waitForInput = False
 
 			elif(buttonD == False):
-				p.terminate()
-				p.join()
-				print(p.is_alive())
+				process.terminate()
+				process.join()
+				print(process.is_alive())
 				PlayQuestion(deviceName, questionD)
 				userChoice = "D"
 				Blink(3, outPinD, 3)

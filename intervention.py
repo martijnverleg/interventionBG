@@ -229,7 +229,9 @@ def Main(phoneButton):
 
 while True:
 	phoneButton = GPIO.input(phonePin)
+	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
 	mainProcess = multiprocessing.Process(target=Main, args=(phoneButton,))
+	
 	if phoneButton == False:
 		mainProcess.start()
 	elif phoneButton == True:

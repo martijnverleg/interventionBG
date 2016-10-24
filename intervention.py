@@ -230,7 +230,7 @@ while True:
 		PlayOutro(deviceName)
 
 		ChangeFileName(userChoice)
-
-		checkerProcess.terminate()
-		checkerProcess.join()
 		phoneButton = True
+	
+	checkerProcess.terminate()
+	checkerProcess.join()

@@ -155,6 +155,7 @@ def Checker():
 """
 def Main(phoneButton):
 	phoneButton = phoneButton
+
 	while(phoneButton == False):
 		GPIO.output(outPinA, 1)
 		GPIO.output(outPinB, 1)
@@ -231,14 +232,16 @@ while True:
 	phoneButton = GPIO.input(phonePin)
 	blinkerProcess = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
 	mainProcess = multiprocessing.Process(target=Main, args=(phoneButton,))
-	
+
 	if phoneButton == False:
 		mainProcess.start()
-	elif phoneButton == True:
-		mainProcess.terminate()
-		mainProcess.join()
-		subprocess.Popen(["pkill aplay"], shell=True)
-		subprocess.Popen(["pkill arecord"], shell=True)
+	
+	while mainProcess.is_alive():
+		if phoneButton == True:
+			mainProcess.terminate()
+			mainProcess.join()
+			subprocess.Popen(["pkill aplay"], shell=True)
+			subprocess.Popen(["pkill arecord"], shell=True)
 	time.sleep(1)
 
 

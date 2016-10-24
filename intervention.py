@@ -148,8 +148,8 @@ def MultiBlink(amount, group, duration):
 def Checker():
 	while True:
 		phoneButton = GPIO.input(phonePin)
-		print(phoneButton)
 		if phoneButton == True:
+			break
 			subprocess.Popen(["pkill aplay"], shell=True)
 			subprocess.Popen(["pkill arecord"], shell=True)
 		time.sleep(1)

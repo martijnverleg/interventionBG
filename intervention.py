@@ -243,5 +243,9 @@ while True:
 			PlayOutro(deviceName)
 
 		ChangeFileName(userChoice)
-		phoneButton = True
+
+		while phoneButton == False:
+			phoneButton = GPIO.input(phonePin)
+			time.sleep(.1)
+
 	time.sleep(.1)

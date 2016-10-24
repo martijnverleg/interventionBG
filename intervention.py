@@ -105,6 +105,9 @@ def PlayIntro(folder):
 		Blink(3, outPinD, 2.32)
 		GPIO.output(outPinD, 1)
 
+	p = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
+	p.start()
+
 def PlayQuestion(folder, question):
 	subprocess.Popen(["pkill aplay"], shell=True)
 	time.sleep(0.1)
@@ -167,8 +170,7 @@ while True:
 			buttonC = GPIO.input(inPinC)
 			buttonD = GPIO.input(inPinD)
 
-			p = multiprocessing.Process(target=MultiBlink, args=(1, outputArray, 1))
-			p.start()
+			
 
 			if(buttonA == False):
 				p.terminate()

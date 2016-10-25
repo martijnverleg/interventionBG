@@ -39,6 +39,7 @@ GPIO.setup(outPinA, GPIO.OUT)
 GPIO.setup(outPinB, GPIO.OUT)
 GPIO.setup(outPinC, GPIO.OUT)
 GPIO.setup(outPinD, GPIO.OUT)
+GPIO.setup(stopLED, GPIO.OUT)
 
 # filenames
 questionA = 'question_a.wav'
